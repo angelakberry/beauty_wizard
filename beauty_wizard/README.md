@@ -151,3 +151,4 @@ Beauty Wizard advances ingredient transparency and data-driven beauty research. 
 
 ---
 
+*AI was used to format tables with Markdown in this document
