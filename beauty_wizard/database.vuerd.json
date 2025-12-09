@@ -1,0 +1,454 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -604,
+    "scrollLeft": -524,
+    "zoomLevel": 1,
+    "show": 431,
+    "database": 4,
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": true,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "BeautyFeeds",
+      "CosmeticProducts",
+      "CSCPOpenData"
+    ],
+    "relationshipIds": [],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "BeautyFeeds": {
+        "id": "BeautyFeeds",
+        "name": "beauty_feeds",
+        "comment": "",
+        "columnIds": [],
+        "seqColumnIds": [],
+        "ui": {
+          "x": 788.0627622777258,
+          "y": 683.1158386136893,
+          "zIndex": 0,
+          "widthName": 72,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761850891765,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts": {
+        "id": "CosmeticProducts",
+        "name": "cosmetic_products",
+        "comment": "",
+        "columnIds": [],
+        "seqColumnIds": [],
+        "ui": {
+          "x": 764.8349272664633,
+          "y": 1092.9306416355246,
+          "zIndex": 0,
+          "widthName": 101,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761850891765,
+          "createAt": 0
+        }
+      },
+      "CSCPOpenData": {
+        "id": "CSCPOpenData",
+        "name": "cscpopendata",
+        "comment": "",
+        "columnIds": [],
+        "seqColumnIds": [],
+        "ui": {
+          "x": 1131.3500068198434,
+          "y": 908.1526641107987,
+          "zIndex": 0,
+          "widthName": 76,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761850891765,
+          "createAt": 0
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "BeautyFeeds_UniqId": {
+        "id": "BeautyFeeds_UniqId",
+        "tableId": "BeautyFeeds",
+        "name": "uniq_id",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "BeautyFeeds_Type": {
+        "id": "BeautyFeeds_Type",
+        "tableId": "BeautyFeeds",
+        "name": "type",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "BeautyFeeds_Brand": {
+        "id": "BeautyFeeds_Brand",
+        "tableId": "BeautyFeeds",
+        "name": "brand",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "BeautyFeeds_Name": {
+        "id": "BeautyFeeds_Name",
+        "tableId": "BeautyFeeds",
+        "name": "name",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "BeautyFeeds_Price": {
+        "id": "BeautyFeeds_Price",
+        "tableId": "BeautyFeeds",
+        "name": "price",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "BeautyFeeds_Ingredients": {
+        "id": "BeautyFeeds_Ingredients",
+        "tableId": "BeautyFeeds",
+        "name": "ingredients",
+        "comment": "",
+        "dataType": "text",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts_Label": {
+        "id": "CosmeticProducts_Label",
+        "tableId": "CosmeticProducts",
+        "name": "label",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts_Brand": {
+        "id": "CosmeticProducts_Brand",
+        "tableId": "CosmeticProducts",
+        "name": "brand",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts_Name": {
+        "id": "CosmeticProducts_Name",
+        "tableId": "CosmeticProducts",
+        "name": "name",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts_Price": {
+        "id": "CosmeticProducts_Price",
+        "tableId": "CosmeticProducts",
+        "name": "price",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts_Rank": {
+        "id": "CosmeticProducts_Rank",
+        "tableId": "CosmeticProducts",
+        "name": "rank",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CosmeticProducts_Ingredients": {
+        "id": "CosmeticProducts_Ingredients",
+        "tableId": "CosmeticProducts",
+        "name": "ingredients",
+        "comment": "",
+        "dataType": "text",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CSCPOpenData_CDPHId": {
+        "id": "CSCPOpenData_CDPHId",
+        "tableId": "CSCPOpenData",
+        "name": "CDPHId",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CSCPOpenData_ProductName": {
+        "id": "CSCPOpenData_ProductName",
+        "tableId": "CSCPOpenData",
+        "name": "product_name",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CSCPOpenData_CompanyName": {
+        "id": "CSCPOpenData_CompanyName",
+        "tableId": "CSCPOpenData",
+        "name": "company_name",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      },
+      "CSCPOpenData_CasNumber": {
+        "id": "CSCPOpenData_CasNumber",
+        "tableId": "CSCPOpenData",
+        "name": "cas_number",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 0,
+          "widthComment": 0,
+          "widthDataType": 0,
+          "widthDefault": 0
+        },
+        "meta": {
+          "updateAt": 0,
+          "createAt": 0
+        }
+      }
+    },
+    "relationshipEntities": {
+      "CSCPOpenDataToCosmeticProducts": {
+        "id": "CSCPOpenDataToCosmeticProducts",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 1,
+        "start": {
+          "tableId": "",
+          "columnIds": [],
+          "x": 0,
+          "y": 0,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "",
+          "columnIds": [],
+          "x": 0,
+          "y": 0,
+          "direction": 8
+        },
+        "meta": {
+          "updateAt": 1761851048979,
+          "createAt": 0
+        }
+      }
+    },
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  }
+}
