@@ -1,13 +1,39 @@
+from pathlib import Path
 import sqlite3
 import pandas as pd
 import re
 
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+DB_PATH = BASE_DIR / "db" / "BeautyWiz.db"
+
+DB_PATH.parent.mkdir(exist_ok=True)
+
 # ------------------------------------------------------
 # Connect to database
 # ------------------------------------------------------
-conn = sqlite3.connect("BeautyWiz.db")
+conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 cursor.execute("PRAGMA foreign_keys = ON;")
+
+# ------------------------------------------------------
+# Load CSV files
+# ------------------------------------------------------
+cosmetic = pd.read_csv(DATA_DIR / "cosmetic_p.csv")
+cscp = pd.read_csv(DATA_DIR / "cscpopendata.csv")
+beauty = pd.read_csv(DATA_DIR / "BeautyFeeds.csv")
+
+print("BeautyFeeds columns BEFORE normalization:", beauty.columns.tolist())
+
+# Normalize column names for consistent access
+beauty.columns = (
+    beauty.columns
+    .str.strip()
+    .str.lower()
+    .str.replace(" ", "_")
+)
+
+print("BeautyFeeds columns AFTER normalization:", beauty.columns.tolist())
 
 # ------------------------------------------------------
 # Normalize ingredient names
@@ -18,13 +44,6 @@ def normalize(name):
     name = name.strip()
     name = re.sub(r"\s+", " ", name)
     return name.lower()  # normalize to lowercase for matching consistency
-
-# ------------------------------------------------------
-# Load CSV files
-# ------------------------------------------------------
-cosmetic = pd.read_csv("cosmetic_p.csv")
-beauty = pd.read_csv("BeautyFeeds.csv")
-cscp = pd.read_csv("cscpopendata.csv")
 
 # ------------------------------------------------------
 # Insert products
@@ -67,7 +86,7 @@ def build_ingredients():
         ingredient_set.update(ingredients)
 
     # Collect ingredients from hazard and chemical data
-    ingredient_set.update([normalize(i) for i in beauty["ingredient"]])
+    ingredient_set.update([normalize(i) for i in beauty["ingredients"]])
     ingredient_set.update([normalize(i) for i in cscp["ChemicalName"]])
 
     # Remove Nones
@@ -118,7 +137,7 @@ def link_product_ingredients():
 # ------------------------------------------------------
 def load_hazard_data():
     for _, row in beauty.iterrows():
-        ing_norm = normalize(row["ingredient"])
+        ing_norm = normalize(row["ingredients"])
 
         ingredient_id = cursor.execute(
             "SELECT ingredient_id FROM Ingredients WHERE ingredient_name = ?",
