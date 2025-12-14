@@ -55,6 +55,16 @@ This schema enables multi-source analysis of ingredients, product categories, an
 
 ---
 
+### Database Architecture and Workflow
+
+BeautyWiz separates database schema definition, data loading, and analysis to improve clarity, reproducibility, and safety.
+
+The relational schema is defined in a standalone script (`create_beautywiz_db.py`) rather than embedded in a notebook. This ensures schema creation is intentional and repeatable, and avoids accidental re-execution during exploratory analysis. It also reflects real-world data workflows, where database structure is managed independently from analytics code.
+
+Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) script, while Jupyter notebooks focus on querying the database, performing analysis, and producing visualizations. This separation keeps notebooks readable and supports scalable, well-organized analytical development.
+
+---
+
 ## Methodology
 
 ### Standardization and Cleaning
