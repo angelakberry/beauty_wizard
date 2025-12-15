@@ -3,8 +3,8 @@ import sqlite3
 # ------------------------------------------------------
 # Connect to the database
 # ------------------------------------------------------
-# Creates BeautyWiz.db in the working directory
-conn = sqlite3.connect("BeautyWiz.db")
+# Creates BeautyWiz.db in /db
+conn = sqlite3.connect("db/BeautyWiz.db")
 cursor = conn.cursor()
 
 # Enable foreign key enforcement in SQLite
