@@ -17,20 +17,6 @@ This project was developed using Git and GitHub with frequent, incremental commi
 
 ---
 
-## Data Sources
-
-This project draws from several datasets:
-
-| Source | Format | Purpose | Filename
-|--------|--------|---------|----------|
-| [Sephora Skincare Product Ingredients (Kaggle)](https://www.kaggle.com/datasets/dominoweir/skincare-product-ingredients) | CSV | Retail product listings and ingredient text | cosmetic_p.csv |
-| [BeautyFeeds Skincare & Haircare Dataset](https://app.beautyfeeds.io/sample_datasets/skincare-hair-care-products-with-ingredients?_gl=1*15a4fvl*_ga*MjM1OTEyMDE3LjE3NjE2Nzg1NTY.*_ga_19C9HP125W*czE3NjE2Nzg1NTYkbzEkZzEkdDE3NjE2Nzg1OTkkajE3JGwwJGgw) | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
-| [California Chemicals in Cosmetics](https://data.chhs.ca.gov/dataset/chemicals-in-cosmetics) | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
-
-The combined datasets exceed 1,000 rows and 10 columns. All datasets were cleaned, standardized, and integrated into a relational database for analysis.
-
----
-
 ## Goals
 
 Minimum goals:
@@ -49,18 +35,17 @@ Expanded goals:
 
 ---
 
-## Database Structure
+## Data Sources
 
-Multiple datasets are merged using standardized `brand_id` and `product_id` keys. Core tables include:
+This project draws from several datasets:
 
-| Table | Description |
-|-------|-------------|
-| `brands` | Central reference connecting all datasets |
-| `sephora_products` | Products with price, ingredients, product types, and skin type suitability |
-| `beauty_feeds` | Supplemental ingredient listings |
-| `chemicals_in_cosmetics` | Chemical reports with regulatory and timeline data |
+| Source | Format | Purpose | Filename
+|--------|--------|---------|----------|
+| [Sephora Skincare Product Ingredients (Kaggle)](https://www.kaggle.com/datasets/dominoweir/skincare-product-ingredients) | CSV | Retail product listings and ingredient text | cosmetic_p.csv |
+| [BeautyFeeds Skincare & Haircare Dataset](https://app.beautyfeeds.io/sample_datasets/skincare-hair-care-products-with-ingredients?_gl=1*15a4fvl*_ga*MjM1OTEyMDE3LjE3NjE2Nzg1NTY.*_ga_19C9HP125W*czE3NjE2Nzg1NTYkbzEkZzEkdDE3NjE2Nzg1OTkkajE3JGwwJGgw) | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
+| [California Chemicals in Cosmetics](https://data.chhs.ca.gov/dataset/chemicals-in-cosmetics) | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
 
-This schema enables multi-source analysis of ingredients, product categories, and chemical exposure.
+The combined datasets exceed 1,000 rows and 10 columns. All datasets were cleaned, standardized, and integrated into a relational database for analysis.
 
 ---
 
@@ -72,9 +57,59 @@ A relational schema was designed to model products, ingredients, and their many-
 
 The schema is defined in a standalone script (`create_beautywiz_db.py`) rather than embedded in a notebook. This ensures schema creation is intentional and repeatable, and avoids accidental re-execution during exploratory analysis. It also reflects real-world data workflows, where database structure is managed independently from analytics code.
 
-An Entity-Relationship Diagram (ERD) was created to guide schema design and is included in the repository.
-
 Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) script, while Jupyter notebooks focus on querying the database, performing analysis, and producing visualizations. This separation keeps notebooks readable and supports scalable, well-organized analytical development.
+
+---
+
+## Database Schema (Entity Relationship Diagram)
+
+The Beauty Wizard project uses a relational database to normalize cosmetic product, ingredient, and chemical report data.  
+This schema supports ingredient-level transparency, reuse of ingredients across products, and regulatory risk analysis.
+
+```mermaid
+erDiagram
+  Products ||--o{ ProductIngredients : contains
+  Ingredients ||--o{ ProductIngredients : used_in
+  Ingredients ||--o{ ChemicalReports : reported_as
+
+  Products {
+    int product_id PK
+    text label
+    text brand
+    text product_name
+    real price
+    real rank
+    int skin_combination
+    int skin_dry
+    int skin_normal
+    int skin_oily
+    int skin_sensitive
+    text bf_type
+    real bf_price
+    text match_quality
+  }
+
+  Ingredients {
+    int ingredient_id PK
+    text ingredient_name
+  }
+
+  ProductIngredients {
+    int product_id FK
+    int ingredient_id FK
+    int sequence
+  }
+
+  ChemicalReports {
+    int report_id PK
+    int ingredient_id FK
+    text chemical_id
+    text first_reported
+    text most_recent_report
+    text discontinued_date
+    int report_count
+    text cas_number
+  }
 
 ---
 
