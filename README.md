@@ -63,9 +63,9 @@ Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) s
 
 ## Database Schema (Entity Relationship Diagram)
 
-The Beauty Wizard project uses a relational database to normalize cosmetic product, ingredient, and chemical report data.  
-This schema supports ingredient-level transparency, reuse of ingredients across products, and regulatory risk analysis.
+The Beauty Wizard project uses a relational database to normalize cosmetic product, ingredient, and chemical report data. This schema supports ingredient-level transparency, reuse of ingredients across products, and regulatory risk analysis.
 
+```md
 ```mermaid
 erDiagram
   Products ||--o{ ProductIngredients : contains
@@ -110,6 +110,24 @@ erDiagram
     int report_count
     text cas_number
   }
+
+```
+---
+
+### Schema Overview
+
+**Products**  
+Stores cosmetic product metadata, including brand, price, ranking, and skin-type compatibility indicators.
+
+**Ingredients**  
+A normalized lookup table of unique cosmetic ingredients used across all products.
+
+**ProductIngredients**  
+A junction table that resolves the many-to-many relationship between products and ingredients.  
+The `sequence` field preserves ingredient order as listed on product labels.
+
+**ChemicalReports**  
+Stores regulatory and safety-related reporting data associated with specific ingredients, enabling risk and compliance analysis.
 
 ---
 
