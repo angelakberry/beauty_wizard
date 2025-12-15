@@ -69,7 +69,7 @@ The Beauty Wizard project uses a relational database to normalize cosmetic produ
 erDiagram
   Products ||--o{ ProductIngredients : contains
   Ingredients ||--o{ ProductIngredients : used_in
-  Ingredients ||--o{ ChemicalReports : reported_as
+  Ingredients ||--o{ IngredientHazards : flagged_with
 
   Products {
     int product_id PK
@@ -99,15 +99,13 @@ erDiagram
     int sequence
   }
 
-  ChemicalReports {
-    int report_id PK
+  IngredientHazards {
+    int hazard_id PK
     int ingredient_id FK
-    text chemical_id
-    text first_reported
-    text most_recent_report
-    text discontinued_date
-    int report_count
-    text cas_number
+    real hazard_score
+    text concerns
+    text regulation_status
+    text source_urls
   }
 
 ```
@@ -125,8 +123,8 @@ A normalized lookup table of unique cosmetic ingredients used across all product
 A junction table that resolves the many-to-many relationship between products and ingredients.  
 The `sequence` field preserves ingredient order as listed on product labels.
 
-**ChemicalReports**  
-Stores regulatory and safety-related reporting data associated with specific ingredients, enabling risk and compliance analysis.
+**IngredientHazards**  
+Stores ingredient-level safety and regulatory information, including hazard scores, documented concerns, regulatory status, and source references. This table enables risk scoring and transparency analysis without duplicating product records.
 
 ---
 
