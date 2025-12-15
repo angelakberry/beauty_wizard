@@ -12,6 +12,7 @@ __pycache__/
 # Databases / generated artifacts
 *.db
 *.sqlite
+*.sqlite3
 
 # OS
 .DS_Store
