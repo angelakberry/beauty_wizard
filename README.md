@@ -8,17 +8,23 @@ This work includes data cleaning, database design, exploratory analysis, and the
 
 ---
 
+## Version Control
+
+This project was developed using Git and GitHub with frequent, incremental commits. All commits were made via the command line in accordance with project requirements.
+
+---
+
 ## Data Sources
 
 This project draws from several datasets:
 
-| Source | Format | Purpose |
-|--------|--------|---------|
-| Sephora Skincare Product Ingredients (Kaggle) | CSV | Retail product listings and ingredient text |
-| BeautyFeeds Skincare & Haircare Dataset | Cloud Dataset | Supplementary product and ingredient details |
-| California Chemicals in Cosmetics | Government dataset | Chemical reporting, flagged substances, discontinuation dates |
-| `cosmetic_p.csv` | CSV | Early dataset used for initial analysis |
-| Makeup API: `http://makeup-api.herokuapp.com/api/v1/products.json` | API | Real-time product, brand, and ingredient lookup |
+| Source | Format | Purpose | Filename
+|--------|--------|---------|----------|
+| Sephora Skincare Product Ingredients (Kaggle) | CSV | Retail product listings and ingredient text | cosmetic_p.csv |
+| BeautyFeeds Skincare & Haircare Dataset | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
+| California Chemicals in Cosmetics | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
+
+All datasets were cleaned, standardized, and integrated into a relational database for analysis.
 
 ---
 
