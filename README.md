@@ -65,7 +65,6 @@ Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) s
 
 The Beauty Wizard project uses a relational database to normalize cosmetic product, ingredient, and chemical report data. This schema supports ingredient-level transparency, reuse of ingredients across products, and regulatory risk analysis.
 
-```md
 ```mermaid
 erDiagram
   Products ||--o{ ProductIngredients : contains
