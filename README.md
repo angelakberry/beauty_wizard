@@ -109,6 +109,10 @@ erDiagram
   }
 
 ```
+
+> **Static ERD Image**  
+> See `/schema/beauty_wizard_erd.png` if Mermaid diagrams are not supported by your viewer.
+
 ---
 
 ### Schema Overview
