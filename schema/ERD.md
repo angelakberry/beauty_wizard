@@ -1,8 +1,10 @@
+# Used in README.md
+
 ```mermaid
 erDiagram
   Products ||--o{ ProductIngredients : contains
   Ingredients ||--o{ ProductIngredients : used_in
-  Ingredients ||--o{ ChemicalReports : reported_as
+  Ingredients ||--o{ IngredientHazards : flagged_with
 
   Products {
     int product_id PK
@@ -32,13 +34,13 @@ erDiagram
     int sequence
   }
 
-  ChemicalReports {
-    int report_id PK
+  IngredientHazards {
+    int hazard_id PK
     int ingredient_id FK
-    text chemical_id
-    text first_reported
-    text most_recent_report
-    text discontinued_date
-    int report_count
-    text cas_number
+    real hazard_score
+    text concerns
+    text regulation_status
+    text source_urls
   }
+
+```

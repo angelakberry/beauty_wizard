@@ -11,12 +11,6 @@ This work includes data cleaning, database design, exploratory analysis, and the
 
 ---
 
-## Version Control
-
-This project was developed using Git and GitHub with frequent, incremental commits. All commits were made via the command line in accordance with project requirements.
-
----
-
 ## Goals
 
 Minimum goals:
@@ -35,6 +29,12 @@ Expanded goals:
 
 ---
 
+## Version Control
+
+This project was developed using Git and GitHub with frequent, incremental commits. All commits were made via the command line in accordance with project requirements.
+
+---
+
 ## Data Sources
 
 This project draws from several datasets:
@@ -45,7 +45,7 @@ This project draws from several datasets:
 | [BeautyFeeds Skincare & Haircare Dataset](https://app.beautyfeeds.io/sample_datasets/skincare-hair-care-products-with-ingredients?_gl=1*15a4fvl*_ga*MjM1OTEyMDE3LjE3NjE2Nzg1NTY.*_ga_19C9HP125W*czE3NjE2Nzg1NTYkbzEkZzEkdDE3NjE2Nzg1OTkkajE3JGwwJGgw) | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
 | [California Chemicals in Cosmetics](https://data.chhs.ca.gov/dataset/chemicals-in-cosmetics) | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
 
-The combined datasets exceed 1,000 rows and 10 columns. All datasets were cleaned, standardized, and integrated into a relational database for analysis.
+> The combined datasets exceed 1,000 rows and 10 columns. All datasets were cleaned, standardized, and integrated into a relational database for analysis.
 
 ---
 
@@ -58,6 +58,26 @@ A relational schema was designed to model products, ingredients, and their many-
 The schema is defined in a standalone script (`create_beautywiz_db.py`) rather than embedded in a notebook. This ensures schema creation is intentional and repeatable, and avoids accidental re-execution during exploratory analysis. It also reflects real-world data workflows, where database structure is managed independently from analytics code.
 
 Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) script, while Jupyter notebooks focus on querying the database, performing analysis, and producing visualizations. This separation keeps notebooks readable and supports scalable, well-organized analytical development.
+
+---
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/angelakberry/beauty_wizard.git
+cd beauty_wizard
+```
+### 2. Set up environment and database
+
+```bash
+chmod +x setup_beautywiz.sh
+./setup_beautywiz.sh
+```
+
+### Open the Jupyter Notebook
+Run all cells in
+> bbbbbbbbbBeautyWizard_Capstone.ipynb
 
 ---
 
@@ -236,4 +256,4 @@ Beauty Wizard advances ingredient transparency and data-driven beauty research. 
 
 ---
 
-*This project used ChatGPT for code review, debugging assistance, and README structuring.*
+> This project used AI for organization and repo structure review, checklisting requirements, troubleshooting Git, and README formatting (e.g., Mermaid, Markdown).

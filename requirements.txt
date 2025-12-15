@@ -18,3 +18,22 @@ seaborn==0.13.2
 six==1.17.0
 tzdata==2025.2
 urllib3==2.5.0
+
+# ^Might delete all that^
+
+# Core data analysis
+pandas>=1.5
+numpy>=1.23
+
+# Visualization
+matplotlib>=3.7
+seaborn>=0.12
+
+# Database & utilities
+sqlite-utils>=3.35
+
+# Notebook environment
+jupyter>=1.0
+
+# HTTP / API support (documented capability)
+requests>=2.31
