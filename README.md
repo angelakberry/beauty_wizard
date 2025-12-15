@@ -4,6 +4,9 @@
 
 Beauty Wizard is a data analytics project focused on examining cosmetic product formulations, ingredient patterns, brand trends, and chemical safety. The project integrates retail product data, ingredient sources, and government chemical reporting into a unified relational database for analysis. The goal is to support informed consumer decision-making, improve ingredient transparency, and analyze how formulations relate to pricing, brand identity, and safety outcomes.
 
+This analysis explores how cosmetic ingredients are used across products and brands, highlighting formulation complexity and regulatory signals. Results show that a small
+number of ingredients dominate formulations, while regulatory reporting is concentrated among a limited subset of chemicals.
+
 This work includes data cleaning, database design, exploratory analysis, and the development of new metrics such as safety scores and ingredient diversity.
 
 ---
@@ -20,11 +23,11 @@ This project draws from several datasets:
 
 | Source | Format | Purpose | Filename
 |--------|--------|---------|----------|
-| Sephora Skincare Product Ingredients (Kaggle) | CSV | Retail product listings and ingredient text | cosmetic_p.csv |
-| BeautyFeeds Skincare & Haircare Dataset | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
-| California Chemicals in Cosmetics | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
+| [Sephora Skincare Product Ingredients (Kaggle)](https://www.kaggle.com/datasets/dominoweir/skincare-product-ingredients) | CSV | Retail product listings and ingredient text | cosmetic_p.csv |
+| [BeautyFeeds Skincare & Haircare Dataset](https://app.beautyfeeds.io/sample_datasets/skincare-hair-care-products-with-ingredients?_gl=1*15a4fvl*_ga*MjM1OTEyMDE3LjE3NjE2Nzg1NTY.*_ga_19C9HP125W*czE3NjE2Nzg1NTYkbzEkZzEkdDE3NjE2Nzg1OTkkajE3JGwwJGgw) | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
+| [California Chemicals in Cosmetics](https://data.chhs.ca.gov/dataset/chemicals-in-cosmetics) | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
 
-All datasets were cleaned, standardized, and integrated into a relational database for analysis.
+The combined datasets exceed 1,000 rows and 10 columns. All datasets were cleaned, standardized, and integrated into a relational database for analysis.
 
 ---
 
@@ -63,9 +66,13 @@ This schema enables multi-source analysis of ingredients, product categories, an
 
 ### Database Architecture and Workflow
 
-BeautyWiz separates database schema definition, data loading, and analysis to improve clarity, reproducibility, and safety.
+BeautyWizard separates database schema definition, data loading, and analysis to improve clarity, reproducibility, and safety.
 
-The relational schema is defined in a standalone script (`create_beautywiz_db.py`) rather than embedded in a notebook. This ensures schema creation is intentional and repeatable, and avoids accidental re-execution during exploratory analysis. It also reflects real-world data workflows, where database structure is managed independently from analytics code.
+A relational schema was designed to model products, ingredients, and their many-to-many relationships. Separate tables for hazard and regulatory data allow external signals to be linked without duplicating product records.
+
+The schema is defined in a standalone script (`create_beautywiz_db.py`) rather than embedded in a notebook. This ensures schema creation is intentional and repeatable, and avoids accidental re-execution during exploratory analysis. It also reflects real-world data workflows, where database structure is managed independently from analytics code.
+
+An Entity-Relationship Diagram (ERD) was created to guide schema design and is included in the repository.
 
 Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) script, while Jupyter notebooks focus on querying the database, performing analysis, and producing visualizations. This separation keeps notebooks readable and supports scalable, well-organized analytical development.
 
@@ -98,6 +105,14 @@ Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) s
 - Identified extreme price values
 - Retained valid luxury-priced items
 - Flagged anomalies for review rather than discarding
+
+---
+
+## Custom Functions
+
+This project includes custom Python functions to automate repetitive tasks,
+including column normalization, ingredient parsing, and database population.
+These functions improve code reuse, readability, and reproducibility.
 
 ---
 
@@ -134,8 +149,8 @@ Stretch goals:
 ## Repository Structure
 
 beauty_wizard
-/data Raw and cleaned datasets
-/notebooks EDA, transformations, visualizations
+/data (datasets)
+/notebook EDA, transformations, visualizations
 /schema ER diagrams and SQL scripts
 /scripts ETL and data cleaning utilities
 README.md
@@ -167,4 +182,4 @@ Beauty Wizard advances ingredient transparency and data-driven beauty research. 
 
 ---
 
-Ai used: "..."
+*This project used ChatGPT for code review, debugging assistance, and README structuring.*
