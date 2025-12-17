@@ -2,45 +2,40 @@
 
 ```mermaid
 erDiagram
-  Products ||--o{ ProductIngredients : contains
-  Ingredients ||--o{ ProductIngredients : used_in
-  Ingredients ||--o{ IngredientHazards : flagged_with
+    PRODUCTS {
+        INTEGER product_id PK
+        TEXT brand
+        TEXT product_name
+        REAL price
+        REAL rank
+        TEXT product_type
+    }
 
-  Products {
-    int product_id PK
-    text label
-    text brand
-    text product_name
-    real price
-    real rank
-    int skin_combination
-    int skin_dry
-    int skin_normal
-    int skin_oily
-    int skin_sensitive
-    text bf_type
-    real bf_price
-    text match_quality
-  }
+    INGREDIENTS {
+        INTEGER ingredient_id PK
+        TEXT ingredient_name
+    }
 
-  Ingredients {
-    int ingredient_id PK
-    text ingredient_name
-  }
+    PRODUCT_INGREDIENTS {
+        INTEGER product_id FK
+        INTEGER ingredient_id FK
+    }
 
-  ProductIngredients {
-    int product_id FK
-    int ingredient_id FK
-    int sequence
-  }
+    CHEMICAL_REPORTS {
+        INTEGER report_id PK
+        TEXT brand
+        TEXT product_name
+        INTEGER ingredient_id FK
+        INTEGER chemicalid
+        TEXT chemicalname
+        TEXT initialdatereported
+        TEXT mostrecentdatereported
+        TEXT discontinueddate
+        INTEGER chemicalcount
+    }
 
-  IngredientHazards {
-    int hazard_id PK
-    int ingredient_id FK
-    real hazard_score
-    text concerns
-    text regulation_status
-    text source_urls
-  }
+    PRODUCTS ||--o{ PRODUCT_INGREDIENTS : contains
+    INGREDIENTS ||--o{ PRODUCT_INGREDIENTS : included_in
+    INGREDIENTS ||--o{ CHEMICAL_REPORTS : reported_in
 
 ```

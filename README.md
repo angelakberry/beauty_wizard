@@ -1,89 +1,73 @@
-# Beauty Wizard: Cosmetic Ingredient Analysis
+# Beauty Wizard  
+**Cosmetic Ingredient Transparency & Regulatory Indicators**
 
-## Project Summary
-
-Beauty Wizard is a data analytics project focused on examining cosmetic product formulations, ingredient patterns, brand trends, and chemical safety. The project integrates retail product data, ingredient sources, and government chemical reporting into a unified relational database for analysis. The goal is to support informed consumer decision-making, improve ingredient transparency, and analyze how formulations relate to pricing, brand identity, and safety outcomes.
-
-This analysis explores how cosmetic ingredients are used across products and brands, highlighting formulation complexity and regulatory signals. Results show that a small
-number of ingredients dominate formulations, while regulatory reporting is concentrated among a limited subset of chemicals.
-
-This work includes data cleaning, database design, exploratory analysis, and the development of new metrics such as safety scores and ingredient diversity.
+> A data analysis capstone project exploring cosmetic product formulations, ingredient usage patterns, and regulatory reporting signals through a relational database and reproducible analytics workflow.
 
 ---
 
-## Goals
+## Project Overview
 
-Minimum goals:
+**Beauty Wizard** integrates retail cosmetic product data with government chemical reporting to examine how ingredients are used across products, brands, and categories—and how those patterns intersect with regulatory signals.
 
-- Identify the most common cosmetic ingredients
-- Compare products by category (e.g., cleanser vs. moisturizer)
-- Analyze ingredient counts per product
-- Determine highest and lowest ranked brands based on dataset criteria
+Rather than labeling products or brands as “safe” or “unsafe,” this project focuses on **transparency, formulation complexity, and reporting prevalence**, giving analytical context to how ingredients appear in the marketplace and in public regulatory datasets.
 
-Expanded goals:
-
-- Correlate product composition with price, popularity, and safety scores
-- Identify brands with high transparency or frequent use of flagged chemicals
-- Compare ingredient patterns across product categories
-- Track controversial chemicals over time
+All analyses are fully reproducible via a single Jupyter Notebook and a SQLite database.
 
 ---
 
-## Version Control
+## Core Questions
 
-This project was developed using Git and GitHub with frequent, incremental commits. All commits were made via the command line in accordance with project requirements.
+- Which ingredients are most prevalent across cosmetic products?
+- How complex are typical cosmetic formulations?
+- Do higher-priced or higher-ranked products differ in ingredient diversity?
+- Which ingredients and brands appear most frequently in regulatory reporting datasets?
+- How does regulatory exposure differ when measured at the ingredient, product, or brand level?
 
 ---
 
 ## Data Sources
 
-This project draws from several datasets:
+This project combines **three independent datasets**:
 
-| Source | Format | Purpose | Filename
-|--------|--------|---------|----------|
-| [Sephora Skincare Product Ingredients (Kaggle)](https://www.kaggle.com/datasets/dominoweir/skincare-product-ingredients) | CSV | Retail product listings and ingredient text | cosmetic_p.csv |
-| [BeautyFeeds Skincare & Haircare Dataset](https://app.beautyfeeds.io/sample_datasets/skincare-hair-care-products-with-ingredients?_gl=1*15a4fvl*_ga*MjM1OTEyMDE3LjE3NjE2Nzg1NTY.*_ga_19C9HP125W*czE3NjE2Nzg1NTYkbzEkZzEkdDE3NjE2Nzg1OTkkajE3JGwwJGgw) | Cloud dataset converted to CSV | Supplementary product and ingredient details | BeautyFeeds.csv |
-| [California Chemicals in Cosmetics](https://data.chhs.ca.gov/dataset/chemicals-in-cosmetics) | Government dataset | Chemical reporting, flagged substances, discontinuation dates | cscpopendata.csv |
+| Dataset | Description |
+|------|-------------|
+| **[Sephora Skincare Product Ingredients (Kaggle)](https://www.kaggle.com/datasets/dominoweir/skincare-product-ingredients)** | Retail product listings, prices, rankings, and ingredient text |
+| **[BeautyFeeds Skincare & Haircare Dataset](https://app.beautyfeeds.io/sample_datasets/skincare-hair-care-products-with-ingredients?_gl=1*15a4fvl*_ga*MjM1OTEyMDE3LjE3NjE2Nzg1NTY.*_ga_19C9HP125W*czE3NjE2Nzg1NTYkbzEkZzEkdDE3NjE2Nzg1OTkkajE3JGwwJGgw)** | Supplemental ingredient and product metadata |
+| **[California Chemicals in Cosmetics](https://data.chhs.ca.gov/dataset/chemicals-in-cosmetics)** | Government chemical reporting data, including reporting timelines and counts |
 
-> The combined datasets exceed 1,000 rows and 10 columns. All datasets were cleaned, standardized, and integrated into a relational database for analysis.
-
----
-
-### Database Architecture and Workflow
-
-BeautyWizard separates database schema definition, data loading, and analysis to improve clarity, reproducibility, and safety.
-
-A relational schema was designed to model products, ingredients, and their many-to-many relationships. Separate tables for hazard and regulatory data allow external signals to be linked without duplicating product records.
-
-The schema is defined in a standalone script (`create_beautywiz_db.py`) rather than embedded in a notebook. This ensures schema creation is intentional and repeatable, and avoids accidental re-execution during exploratory analysis. It also reflects real-world data workflows, where database structure is managed independently from analytics code.
-
-Data ingestion is handled by a dedicated ETL (extract, transform, load (data)) script, while Jupyter notebooks focus on querying the database, performing analysis, and producing visualizations. This separation keeps notebooks readable and supports scalable, well-organized analytical development.
-
----
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/angelakberry/beauty_wizard.git
-cd beauty_wizard
-```
-### 2. Set up environment and database
-
-```bash
-chmod +x setup_beautywiz.sh
-./setup_beautywiz.sh
-```
-
-### Open the Jupyter Notebook
-Run all cells in
-> bbbbbbbbbBeautyWizard_Capstone.ipynb
+All datasets were cleaned, standardized, and integrated into a unified schema for analysis.
 
 ---
 
-## Database Schema (Entity Relationship Diagram)
+## Methodology
 
-The Beauty Wizard project uses a relational database to normalize cosmetic product, ingredient, and chemical report data. This schema supports ingredient-level transparency, reuse of ingredients across products, and regulatory risk analysis.
+### Data Cleaning & Standardization
+- Normalized column names and text fields (case, whitespace, characters)
+- Standardized ingredient strings and tokenized ingredient lists
+- Applied dataset-specific missing data strategies
+- Preserved real-world variability by **flagging**, not removing, outliers
+
+### Ingredient Normalization
+- Ingredients were cleaned and lowercased for consistent matching
+- Products were expanded to ingredient-level granularity for frequency analysis
+- Ingredient names were mapped across datasets prior to database insertion
+
+### Outlier Handling
+- Extreme price values identified using the IQR method
+- Luxury-priced products retained and transparently flagged
+- Outliers included in EDA to reflect real market conditions
+
+---
+
+## Database Design
+
+The project uses **SQLite** to enforce relational integrity and support SQL-driven analysis.
+
+### Core Tables
+- **Products** — brand, product name, price, rank, and product type
+- **Ingredients** — normalized ingredient master list
+- **ProductIngredients** — many-to-many junction table
+- **ChemicalReports** — regulatory reporting records linked at the ingredient level
 
 ```mermaid
 erDiagram
@@ -125,130 +109,89 @@ erDiagram
 
 ```
 
-> **Static ERD Image:**  
-> See `/schema/beauty_wizard_erd.png` if Mermaid diagrams are not supported by your viewer.
+Foreign key constraints are enforced (`PRAGMA foreign_keys = ON`) to ensure data consistency.
+
+A statis ER diagram is included in the repository under `/schema`.
 
 ---
 
-### Schema Overview
+## Exploratory Data Analysis (EDA)
 
-**Products**  
-Stores cosmetic product metadata, including brand, price, ranking, and skin-type compatibility indicators.
+EDA focuses on understanding the **shape of the data** before applying relational queries:
 
-**Ingredients**  
-A normalized lookup table of unique cosmetic ingredients used across all products.
+- Ingredient frequency distributions
+- Ingredient count distributions by product type
+- Product price distribution and outliers
+- Price vs. ranking relationships
 
-**ProductIngredients**  
-A junction table that resolves the many-to-many relationship between products and ingredients.  
-The `sequence` field preserves ingredient order as listed on product labels.
-
-**IngredientHazards**  
-Stores ingredient-level safety and regulatory information, including hazard scores, documented concerns, regulatory status, and source references. This table enables risk scoring and transparency analysis without duplicating product records.
+These views provide context for interpreting later SQL-based analyses.
 
 ---
 
-## Methodology
+## Advanced SQL Analyses
 
-### Standardization and Cleaning
+Three primary SQL-driven analyses anchor the project:
 
-- Converted identifiers to `snake_case`
-- Normalized brand and product names
-- Tokenized and standardized ingredient lists
+### 1. Formulation Complexity by Brand
+- Measures **average number of ingredients per product** by brand
+- Highlights differences in formulation strategies
+- Clarifies that this metric is **not** ingredient prevalence
 
-### Missing Data Strategy
+### 2. Ingredient Prevalence Across Products
+- Identifies ingredients appearing most frequently across products
+- Demonstrates that a small subset of ingredients dominates formulations
+- Distinct from brand-level complexity analysis
 
-| Type | Method |
-|------|--------|
-| Numeric fields (e.g., price) | Median imputation by category or brand |
-| Categorical fields | Assigned "Unknown" values |
-| Missing key identifiers | Dropped to maintain relational integrity |
-
-### Derived Metrics
-
-- Ingredient Diversity Index (unique ingredients per product)
-- Safety Score (weighted presence of flagged chemicals)
-- Ingredient Frequency Rank (cross-dataset prevalence)
-
-### Outlier Treatment
-
-- Identified extreme price values
-- Retained valid luxury-priced items
-- Flagged anomalies for review rather than discarding
+### 3. Regulatory Reporting Exposure
+- Evaluated at both **product** and **brand** levels
+- Counts unique ingredients appearing in CSCP reports
+- Emphasizes that reporting frequency ≠ product safety risk
 
 ---
 
-## Custom Functions
+## Key Findings
 
-This project includes custom Python functions to automate repetitive tasks,
-including column normalization, ingredient parsing, and database population.
-These functions improve code reuse, readability, and reproducibility.
-
----
-
-## Planned Analyses
-
-Initial goals:
-
-- Price distribution comparisons across brands and categories
-- Ingredient frequency analysis across datasets
-- Correlation between safety score and price or popularity
-- Chemical reporting trends over time
-
-Stretch goals:
-
-- Sentiment analysis using public beauty feeds or reviews
-- Comparison with regulatory data (FDA, EWG)
-- Automated pipeline for data refresh
+- Cosmetic formulations rely heavily on a small set of common ingredients, followed by a long tail of less frequent components.
+- Most products contain **20 to 40 ingredients**, indicating moderate formulation complexity.
+- Ingredient diversity shows **no strong correlation** with price or product rank.
+- Regulatory reporting is concentrated among a relatively small subset of ingredients and brands.
+- High reporting counts typically reflect **widely used ingredients**, not necessarily elevated safety concerns.
 
 ---
 
-## Tools and Technologies
+## Limitations
 
-- Python
-- Pandas
-- Matplotlib, Seaborn
-- NumPy
-- Requests
-- SQLite and SQL schema design
-- Jupyter Notebook
-- Regex and text-processing methods
+- Ingredient presence does not account for concentration or exposure level.
+- Regulatory datasets reflect reporting activity, not enforcement actions or health outcomes.
+- Dataset coverage varies by brand and product category.
+- Results should be interpreted as **analytical signals**, not consumer safety claims.
 
 ---
+
+## Future Extensions
+
+Potential next steps include:
+- Automated data refresh pipelines
+- API-driven product lookups
+- Integration of consumer review sentiment
+- Expanded regulatory datasets and longitudinal analysis
+
+---
+
+## Reproducibility
+
+- All analysis is contained in a single Jupyter Notebook
+- SQLite database generated programmatically
+- Command-line Git used throughout development
+- Notebook structured for portfolio review and PDF export, if needed
+
+> **Note:** Run all notebook cells from top to bottom to fully reproduce results.
 
 ## Repository Structure
 
 beauty_wizard
-/data (datasets)
-/notebook EDA, transformations, visualizations
-/schema ER diagrams and SQL scripts
-/scripts ETL and data cleaning utilities
+/data .csv files
+/schema ER diagram .img and mermaid script .md
+beauty_wizard.ipynb
 README.md
-
----
-
-## Current Status
-
-| Task | Status |
-|------|--------|
-| Dataset acquisition | Complete |
-| Initial cleaning and normalization | Complete |
-| Schema design and table joining | Complete |
-| Core analysis functions | In progress |
-| Visualizations | In progress |
-| Safety and diversity scoring | Upcoming |
-
----
-
-## Contributing
-
-Contributions, dataset suggestions, and methodology feedback are welcome. Please open an issue or submit a pull request.
-
----
-
-## Project Vision
-
-Beauty Wizard advances ingredient transparency and data-driven beauty research. Empowering consumers with smarter, safer, more sustainable choices.
-
----
-
-> This project used AI for organization and repo structure review, checklisting requirements, troubleshooting Git, and README formatting (e.g., Mermaid, Markdown).
+requirements.txt
