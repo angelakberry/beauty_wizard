@@ -1,5 +1,5 @@
 # Beauty Wizard  
-**Cosmetic Ingredient Transparency & Regulatory Indicators**
+**Cosmetic Ingredient Transparency and Regulatory Indicators**
 
 > A data analysis capstone project exploring cosmetic product formulations, ingredient usage patterns, and regulatory reporting signals through a relational database and reproducible analytics workflow.
 
@@ -25,7 +25,7 @@ All analyses are fully reproducible via a single Jupyter Notebook and a SQLite d
 
 ---
 
-## Setup & Environment
+## Setup and Environment
 
 This project uses a Python virtual environment to ensure reproducible execution across systems. All required dependencies are listed in `requirements.txt`. Users can recreate the environment locally by creating and activating a virtual environment and installing dependencies before running the notebook. A dedicated Jupyter kernel is registered to ensure consistency between the execution environment and installed packages.
 
@@ -34,7 +34,12 @@ git clone https://github.com/angelakberry/beauty_wizard.git
 cd beauty_wizard
 
 python3 -m venv venv
+
+# macOS / Linux
 source venv/bin/activate
+
+# Windows (Git Bash)
+source venv/Scripts/activate
 
 pip install -r requirements.txt
 
@@ -42,12 +47,17 @@ python -m ipykernel install --user \  --name beauty_wizard \  --display-name "Py
 
 jupyter notebook
 ```
-Select the kernel Python (beauty_wizard) and run all cells.
+> Note: If jupyter notebook is not found, use `python -m jupyter notebook` to launch Jupyter from the active virtual environment.
 
-> Notes:
+Select the kernel `Python (beauty_wizard)` and run all cells.
+
+> Note:
 > The venv/ directory is intentionally excluded from version control.
 > All paths are relative to the project root for portability.
 > No external configuration or credentials are required.
+
+## Running the Analysis
+The primary analysis is contained in `BeautyWizard.ipynb` at the repository root.
 
 ---
 
@@ -67,7 +77,7 @@ All datasets were cleaned, standardized, and integrated into a unified schema fo
 
 ## Methodology
 
-### Data Cleaning & Standardization
+### Data Cleaning and Standardization
 - Normalized column names and text fields (case, whitespace, characters)
 - Standardized ingredient strings and tokenized ingredient lists
 - Applied dataset-specific missing data strategies
