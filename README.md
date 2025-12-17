@@ -248,6 +248,6 @@ Contributions, dataset suggestions, and methodology feedback are welcome. Please
 ---
 
 ## AI Usage Disclosure
-AI-assisted tools were used as a support aid for project organization, requirements checklisting, repository structure review, Git troubleshooting, and documentation formatting (e.g., Markdown and Mermaid diagrams). All data cleaning, analysis, database design, SQL queries, visualizations, and conclusions were independently developed, reviewed, and validated by the author in accordance with program AI usage guidelines.
+AI-assisted tools were used as a support aid for project organization, additional dataset sourcing, requirements checklisting, repository structure review, Git troubleshooting, and documentation formatting (e.g., Markdown and Mermaid diagrams). All data cleaning, analysis, database design, SQL queries, visualizations, and conclusions were independently developed, reviewed, and validated by the author in accordance with program AI usage guidelines.
 
 ---
