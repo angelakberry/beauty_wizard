@@ -111,7 +111,7 @@ erDiagram
 
 Foreign key constraints are enforced (`PRAGMA foreign_keys = ON`) to ensure data consistency.
 
-A statis ER diagram is included in the repository under `/schema`.
+A static ER diagram .png is included in the repository under `/schema`.
 
 ---
 
