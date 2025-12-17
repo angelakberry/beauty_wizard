@@ -25,6 +25,32 @@ All analyses are fully reproducible via a single Jupyter Notebook and a SQLite d
 
 ---
 
+## Setup & Environment
+
+This project uses a Python virtual environment to ensure reproducible execution across systems. All required dependencies are listed in `requirements.txt`. Users can recreate the environment locally by creating and activating a virtual environment and installing dependencies before running the notebook. A dedicated Jupyter kernel is registered to ensure consistency between the execution environment and installed packages.
+
+```bash
+git clone https://github.com/angelakberry/beauty_wizard.git
+cd beauty_wizard
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+python -m ipykernel install --user \  --name beauty_wizard \  --display-name "Python (beauty_wizard)"
+
+jupyter notebook
+```
+Select the kernel Python (beauty_wizard) and run all cells.
+
+> Notes:
+> The venv/ directory is intentionally excluded from version control.
+> All paths are relative to the project root for portability.
+> No external configuration or credentials are required.
+
+---
+
 ## Data Sources
 
 This project combines **three independent datasets**:
@@ -190,8 +216,28 @@ Potential next steps include:
 ## Repository Structure
 
 beauty_wizard
-/data .csv files
-/schema ER diagram .img and mermaid script .md
-beauty_wizard.ipynb
+/data .csv dataset files
+/schema ER diagram image and Mermaid Markdown script
+beauty_wizard.ipynb Jupyter notebook
+BeautyWiz.db (generated)
 README.md
 requirements.txt
+
+---
+
+## Project Vision
+
+Beauty Wizard advances ingredient transparency and data-driven beauty research. Empowering consumers with smarter, safer, more sustainable choices.
+
+---
+
+## Contributing
+
+Contributions, dataset suggestions, and methodology feedback are welcome. Please open an issue or submit a pull request.
+
+---
+
+## AI Usage Disclosure
+AI-assisted tools were used as a support aid for project organization, requirements checklisting, repository structure review, Git troubleshooting, and documentation formatting (e.g., Markdown and Mermaid diagrams). All data cleaning, analysis, database design, SQL queries, visualizations, and conclusions were independently developed, reviewed, and validated by the author in accordance with program AI usage guidelines.
+
+---
