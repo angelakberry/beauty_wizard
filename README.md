@@ -82,7 +82,7 @@ erDiagram
 
     INGREDIENTS {
         INTEGER ingredient_id PK
-        TEXT ingredient_name UNIQUE
+        TEXT ingredient_name
     }
 
     PRODUCT_INGREDIENTS {
